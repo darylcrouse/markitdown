@@ -1,0 +1,35 @@
+# Upsun configuration, generated using AI at: 2026-06-21T12:49:44.115Z
+# AI can make mistakes. Please modify this file to suit your needs.
+applications:
+  markitdown:
+    type: python:3.14  # Use latest supported Python runtime
+
+    hooks:
+      build: |
+        set -ex
+        pip install -r requirements.txt
+        # Export environment variable for API keys if needed (example from README)
+        # echo >> .environment 'export MARKITDOWN_API_KEYS="$MARKITDOWN_API_KEYS"'
+
+    web:
+      commands:
+        start: uvicorn app:app --host 0.0.0.0 --port 8000 --workers 1
+      locations:
+        /:
+          root: static
+          index: [index.html]
+          allow: true
+          passthru: true
+
+    mounts:
+      static/uploads:
+        source: storage
+
+    variables:
+      env:
+        MARKITDOWN_API_KEYS: "${MARKITDOWN_API_KEYS}"
+
+routes:
+  https://{default}/:
+    type: upstream
+    upstream: markitdown:http
