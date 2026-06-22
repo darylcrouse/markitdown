@@ -23,7 +23,7 @@ import requests
 log = logging.getLogger("markitdown-api.url")
 
 MAX_BYTES = int(os.getenv("MAX_UPLOAD_BYTES", str(25 * 1024 * 1024)))
-FETCH_TIMEOUT = int(os.getenv("URL_FETCH_TIMEOUT_SECONDS", "20"))
+FETCH_TIMEOUT = int(os.getenv("URL_FETCH_TIMEOUT_SECONDS", "120"))
 MAX_REDIRECTS = int(os.getenv("URL_FETCH_MAX_REDIRECTS", "3"))
 ALLOWLIST = [
     h.strip().lower()
