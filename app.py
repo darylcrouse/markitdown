@@ -34,7 +34,7 @@ API_KEYS = {
     k.strip() for k in os.getenv("MARKITDOWN_API_KEYS", "").split(",") if k.strip()
 }
 MAX_BYTES = int(os.getenv("MAX_UPLOAD_BYTES", str(25 * 1024 * 1024)))
-CONVERT_TIMEOUT = int(os.getenv("CONVERT_TIMEOUT_SECONDS", "120"))
+CONVERT_TIMEOUT = int(os.getenv("CONVERT_TIMEOUT_SECONDS", "480"))
 RATE_LIMIT = int(os.getenv("RATE_LIMIT_PER_MINUTE", "30"))
 ALLOWED_ORIGINS = [
     o.strip() for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o.strip()
